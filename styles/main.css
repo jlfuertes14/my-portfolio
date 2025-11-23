@@ -225,23 +225,37 @@ body{
 }
 .hamburger{
   display:block;
-  width:22px;
+  width:24px;
   height:2px;
-  background:var(--accent);
+  background: var(--accent, #00ff41);
   position:relative;
-  box-shadow: var(--glow-green);
+  transition: all 0.3s;
 }
-.hamburger::before,.hamburger::after{
-  content:"";
-  position:absolute;
-  left:0;
-  width:22px;
-  height:2px;
-  background:var(--accent);
-  box-shadow: var(--glow-green);
+.hamburger::before,
+.hamburger::after{
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--accent, #00ff41);
+  left: 0;
+  transition: all 0.3s;
 }
-.hamburger::before{top:-7px}
-.hamburger::after{top:7px}
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+/* Hamburger Animation when Open */
+.nav-list.open ~ .nav-toggle .hamburger {
+  background: transparent;
+}
+.nav-list.open ~ .nav-toggle .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.nav-list.open ~ .nav-toggle .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
 
 /* Hero */
 .hero{
@@ -1043,4 +1057,106 @@ body { cursor: none; /* keep native cursor hidden so our custom cursor shows */ 
 @media (max-width:600px) {
   .site-footer::before { width: calc(100% - 1rem); height:2px; box-shadow: 0 4px 12px rgba(0,255,65,0.16); }
   .footer-line { height:2px; margin-bottom:0.5rem; }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   Add this to the bottom of main.css
+   ========================================= */
+
+/* --- Tablet & Small Laptops (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  :root {
+    --page-side-gap: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* --- Mobile Devices (max-width: 768px) --- */
+@media (max-width: 768px) {
+  
+  /* 1. Navigation (Hamburger Menu) */
+  .nav-toggle {
+    display: block; /* Show hamburger button */
+    z-index: 1001;
+  }
+
+  .nav-list {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%; /* Drawer width */
+    height: 100vh;
+    background: #0a0a0a; /* Dark background */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateX(100%); /* Hide by default */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+
+  .nav-list.open {
+    transform: translateX(0); /* Slide in when open */
+  }
+
+  /* 2. Hero Section */
+  .hero {
+    flex-direction: column-reverse; /* Stack text on top of visual if needed, or keep standard */
+    text-align: center;
+    padding-top: 6rem;
+  }
+
+  .hero-content {
+    align-items: center; /* Center text */
+  }
+
+  .hero-subtitle {
+    justify-content: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  /* 3. Grids (Projects) */
+  .project-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 1.5rem;
+  }
+
+  /* 4. Footer */
+  .footer-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+/* --- Small Mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem; /* Smaller title */
+  }
+  
+  .btn {
+    width: 100%; /* Full width buttons */
+    text-align: center;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
 }
