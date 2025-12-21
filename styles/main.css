@@ -12,25 +12,104 @@
   --border: #1a1a1a;
   --glass: rgba(0, 255, 65, 0.05);
   --radius: 12px;
-  --max-width: 1400px;
-  /* increased max width */
+  --max-width: 1300px;
+  /* increased for robotics/wide feel */
+  --page-side-gap: 2rem;
   --gap: 1.25rem;
-  --fw-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  /* New Robotic Fonts */
+  --fw-sans: "Rajdhani", "Segoe UI", sans-serif;
+  --fw-heading: "Orbitron", sans-serif;
 }
 
-/* make layout wider and allow full-bleed sections */
-:root {
-  --max-width: 1200px;
-  /* slightly wider */
-  --page-side-gap: 1rem;
-  /* small side gap */
-}
+
 
 /* container keeps centered content but wider */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--page-side-gap);
+}
+
+/* Intro Overlay */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-active {
+  overflow: hidden;
+}
+
+#intro-content {
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  /* Allow clicks to pass to canvas for mouse move, but button handles clicks */
+}
+
+#intro-content button {
+  pointer-events: auto;
+}
+
+.intro-title {
+  font-family: var(--fw-heading);
+  font-size: 3rem;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+  letter-spacing: 4px;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+#enter-btn {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 1rem 2rem;
+  font-family: var(--fw-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+#enter-btn:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+  }
+
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+  }
 }
 
 /* full-bleed sections (use class when you want edge-to-edge backgrounds) */
@@ -101,7 +180,7 @@
 /* improve nav on very wide screens */
 @media (min-width:1300px) {
   :root {
-    --page-side-gap: 2rem;
+    /* --page-side-gap: 2rem; Removed to keep tight 0.5rem gap */
   }
 
   .nav-list a {
@@ -115,7 +194,7 @@
 }
 
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
 }
 
 body {
@@ -126,12 +205,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  font-size: 1.125rem;
+  /* Rajdhani reads better slightly larger */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--fw-heading);
+  text-transform: uppercase;
+  /* Robotic style usually implies caps for headers */
+  letter-spacing: 2px;
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1rem
+  padding: 0 var(--page-side-gap);
 }
 
 /* Header */
@@ -155,15 +248,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 0;
+  padding: 0.85rem var(--page-side-gap);
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--fw-heading);
   font-weight: 800;
-  letter-spacing: 0.4px;
+  letter-spacing: 2px;
   /* gradient text: neon green -> yellow */
   color: transparent;
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
@@ -324,11 +418,28 @@ body {
 
 /* Hero */
 .hero {
+  scroll-snap-align: start;
+  /* Snap to start of section */
+  min-height: 100vh;
+  /* Ensure full screen */
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 2rem;
   align-items: center;
   padding: 5rem 0;
+  position: relative;
+  /* Needed for canvas positioning */
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  /* Let clicks pass through */
 }
 
 .hero h1 {
@@ -381,6 +492,10 @@ body {
   padding: 0.7rem 1.2rem;
   border-radius: 10px;
   text-decoration: none;
+  font-family: var(--fw-heading);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -414,7 +529,7 @@ body {
 
 /* Projects */
 .projects {
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 .projects h1 {
@@ -428,6 +543,25 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  grid-auto-flow: dense;
+}
+
+/* Bento Utilities */
+.card-wide {
+  grid-column: span 2;
+}
+
+.card-tall {
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+
+  .card-wide,
+  .card-tall {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
 }
 
 .card {
@@ -1324,27 +1458,26 @@ body {
     margin-left: auto !important;
   }
 
+  /* Full Screen Bold Nav */
   .nav-list {
     position: fixed;
     top: 0;
     right: 0;
-    width: 75%;
-    /* Drawer width */
-    max-width: 300px;
+    width: 100vw;
+    /* Full width */
     height: 100vh;
-    background: rgba(10, 10, 10, 0.98);
-    /* Slightly transparent */
-    backdrop-filter: blur(10px);
+    /* Full height */
+    background: rgba(5, 5, 5, 0.98);
+    /* Almost solid dark background */
+    backdrop-filter: blur(15px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
     transform: translateX(100%);
     /* Hide by default */
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1000;
-    border-left: 1px solid rgba(0, 255, 65, 0.2);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   }
 
   .nav-list.open {
@@ -1537,4 +1670,107 @@ body {
   .nav-list {
     width: 85%;
   }
+}
+
+/* ========================================
+   3D Intro Overlay (Computer Engineer Theme)
+   ======================================== */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 10000;
+  /* Above everything including header */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out;
+  overflow: hidden;
+}
+
+#intro-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Block scrolling when intro is visible */
+body.intro-active {
+  overflow: hidden;
+}
+
+#intro-content {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  animation: pulse-text 3s infinite;
+}
+
+@keyframes pulse-text {
+
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  }
+
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+}
+
+#enter-btn {
+  background: rgba(0, 20, 0, 0.6);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-family: var(--fw-sans);
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+}
+
+#enter-btn:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+  transform: scale(1.05);
+}
+
+#enter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+#enter-btn:hover::before {
+  left: 100%;
 }
