@@ -630,25 +630,7 @@
         </div>
     </footer>
 
-    <script>
-        // Set current year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const navList = document.querySelector('.nav-list');
-
-        navToggle.addEventListener('click', () => {
-            const isOpen = navList.classList.toggle('open');
-            navToggle.setAttribute('aria-expanded', isOpen);
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
