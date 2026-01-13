@@ -221,16 +221,11 @@ if (sessionStorage.getItem('introEntered') === 'true') {
             isEntering = true;
             overlay.classList.add('fade-out');
 
-            // After transition, hide overlay and scroll to home
+            // After transition, hide overlay
             setTimeout(() => {
                 overlay.style.display = 'none';
                 document.body.classList.remove('intro-active');
-
-                // Scroll to home section
-                const homeSection = document.getElementById('home');
-                if (homeSection) {
-                    homeSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                // Let browser handle any hash in the URL naturally
             }, 1000);
         });
     }

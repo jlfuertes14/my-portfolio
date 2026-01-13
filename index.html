@@ -12,6 +12,12 @@
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
+  <!-- Instantly hide intro if already entered (prevents flash) -->
+  <script>
+    if (sessionStorage.getItem('introEntered') === 'true') {
+      document.write('<style>#intro-overlay{display:none!important}</style>');
+    }
+  </script>
 </head>
 
 <body>
