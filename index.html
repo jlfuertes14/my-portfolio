@@ -176,7 +176,17 @@
           <div class="contact-form-container">
             <h1>Contact Me</h1>
             <p>Interested in working together? Send me a message and I'll get back to you soon.</p>
-            <form class="contact-form" action="#" method="post">
+
+            <!-- Status Message -->
+            <div id="form-status" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;"></div>
+
+            <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+              <!-- Web3Forms Access Key -->
+              <input type="hidden" name="access_key" value="cf9eb1cb-83f8-4a13-aa5d-a7f0aa374cf3">
+
+              <!-- Honeypot (spam protection) -->
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
               <label for="contact-name" class="visually-hidden">Your Name</label>
               <input type="text" id="contact-name" name="name" placeholder="Your name" required aria-required="true"
                 class="cyber-input animate-on-scroll">
@@ -307,6 +317,7 @@
   <script src="scripts/main.js"></script>
   <script src="scripts/hero-animation.js"></script>
   <script src="scripts/intro-3d.js"></script>
+  <script src="scripts/contact-handler.js"></script>
 </body>
 
 </html>
