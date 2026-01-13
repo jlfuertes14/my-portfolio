@@ -13,10 +13,29 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <!-- Instantly hide intro if already entered (prevents flash) -->
+  <!-- Also hide body briefly when navigating with hash to prevent home section flash -->
   <script>
-    if (sessionStorage.getItem('introEntered') === 'true') {
-      document.write('<style>#intro-overlay{display:none!important}</style>');
-    }
+    (function () {
+      var entered = sessionStorage.getItem('introEntered') === 'true';
+      var hasHash = window.location.hash && window.location.hash.length > 1;
+
+      if (entered) {
+        // Hide intro overlay
+        document.write('<style>#intro-overlay{display:none!important}</style>');
+
+        if (hasHash) {
+          // Hide body initially to prevent flash, then reveal after scroll
+          document.write('<style>body{visibility:hidden}</style>');
+          window.addEventListener('DOMContentLoaded', function () {
+            var target = document.querySelector(window.location.hash);
+            if (target) {
+              target.scrollIntoView();
+            }
+            document.body.style.visibility = 'visible';
+          });
+        }
+      }
+    })();
   </script>
 </head>
 
