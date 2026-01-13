@@ -2275,3 +2275,137 @@ body.intro-active {
     padding: 1.2rem;
   }
 }
+/* =========================================
+   CONTACT COMMAND CENTER
+   ========================================= */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-visuals {
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  background: rgba(0, 20, 0, 0.4);
+  border-radius: var(--radius);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Scanline Effect */
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  opacity: 0.7;
+  animation: scan 4s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Holographic Header */
+.holo-header {
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fw-heading);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Scrolling Code Block */
+.code-block {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: rgba(0, 255, 65, 0.7);
+  line-height: 1.4;
+  overflow: hidden;
+  height: 150px;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.code-content {
+  animation: scrollCode 10s linear infinite;
+}
+
+@keyframes scrollCode {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Radar / Globe Placeholder */
+.holo-radar {
+  width: 120px;
+  height: 120px;
+  border: 1px dashed var(--accent);
+  border-radius: 50%;
+  margin: 2rem auto;
+  position: relative;
+  background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+}
+
+.holo-radar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  animation: radarSpin 3s linear infinite;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+@keyframes radarSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.system-status {
+  text-align: right;
+  font-family: var(--fw-heading);
+  color: var(--accent-2); /* Yellow for status */
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
