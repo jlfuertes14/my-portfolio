@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Full View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="site-header" id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">My Portfolio</a>
+            <nav class="nav" id="nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html" class="nav-link-separate">Separate Pages</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero container">
+            <div class="hero-content">
+                <h1>Hi, I'm John Lester Fuertes</h1>
+                <p>Building beautiful, performant web experiences. I design and develop user-centered apps.</p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="#projects">View Projects</a>
+                    <a class="btn outline" href="#contact">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true"></div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects container">
+            <h1>Projects</h1>
+            <div class="project-grid">
+                <article class="card">
+                    <div class="card-media">
+                        <!-- You can add an image here later: <img src="image.jpg" alt="Project Preview"> -->
+                    </div>
+                    <div class="card-body">
+                        <h3>My GitHub Project</h3>
+                        <p>A brief description of what this project does. Built with HTML, CSS, and JavaScript.</p>
+                        
+                        <!-- Links Container -->
+                        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                            <!-- Link 1: Live Website -->
+                            <a class="card-link" href="https://jlfuertes14.github.io/lumina" target="_blank">Live Demo →</a>
+                            
+                            <!-- Link 2: GitHub Repository -->
+                            <a class="card-link" href="https://github.com/jlfuertes14/lumina" target="_blank">View Code ↗</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-media"></div>
+                    <div class="card-body">
+                        <h3>Project Two</h3>
+                        <p>Short description of the project and technologies used.</p>
+                        <a class="card-link" href="#">View case →</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-media"></div>
+                    <div class="card-body">
+                        <h3>Project Three</h3>
+                        <p>Short description of the project and technologies used.</p>
+                        <a class="card-link" href="#">View case →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about container">
+            <h1>About Me</h1>
+            <p>Brief intro about your background, strengths, and what you offer. Share your journey, experience, and passion for web development.</p>
+            <h2>Skills & Expertise</h2>
+            <ul class="skills">
+                <li>HTML • CSS • JavaScript</li>
+                <li>React / Next.js</li>
+                <li>UI/UX & accessibility</li>
+                <li>Responsive Design</li>
+                <li>Web Performance</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact container">
+            <h1>Contact Me</h1>
+            <p>Interested in working together? Send me a message and I'll get back to you soon.</p>
+            <form class="contact-form" action="#" method="post">
+                <input type="text" name="name" placeholder="Your name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" rows="6" placeholder="Your message" required></textarea>
+                <button class="btn primary" type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer" class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> Your Name — Built with care.</p>
+            <nav aria-label="Footer">
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
