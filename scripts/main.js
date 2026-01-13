@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
   // Parallax (safe)
+  // Parallax removed as requested
+  /*
   const heroVisual = document.querySelector('.hero-visual');
   const heroSection = document.querySelector('#home');
   if (heroVisual && heroSection) {
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { passive: true });
   }
+  */
 
   /* ---------- CUSTOM CIRCLE CURSOR ---------- */
   // create only once
