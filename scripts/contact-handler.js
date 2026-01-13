@@ -1,8 +1,13 @@
 // Contact Form Handler (Web3Forms)
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
 
-if (contactForm) {
+    if (!contactForm) {
+        console.error('Contact form not found!');
+        return;
+    }
+
     contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -39,6 +44,7 @@ if (contactForm) {
             }
         } catch (error) {
             // Network or other error
+            console.error('Form submission error:', error);
             formStatus.style.display = 'block';
             formStatus.style.background = 'rgba(255, 0, 0, 0.1)';
             formStatus.style.border = '1px solid #ff4444';
@@ -50,4 +56,4 @@ if (contactForm) {
             submitBtn.disabled = false;
         }
     });
-}
+});
