@@ -1,6 +1,16 @@
 const overlay = document.getElementById('intro-overlay');
 const enterBtn = document.getElementById('enter-btn');
 
+// Skip intro if navigating to a specific section (hash in URL)
+if (window.location.hash) {
+    if (overlay) {
+        overlay.style.display = 'none';
+        document.body.classList.remove('intro-active');
+    }
+    // Stop animation and cleanup
+    return;
+}
+
 // Scene Setup
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000000);
