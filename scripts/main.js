@@ -96,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Active section highlight ---------- */
   const highlightActiveSection = () => {
+    // Skip active section highlighting on resume page (preserve HTML-set active class)
+    if (document.body.classList.contains('resume-body')) return;
+
     const sections = document.querySelectorAll('main section[id]');
     let current = '';
     sections.forEach(section => {
