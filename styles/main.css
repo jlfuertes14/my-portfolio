@@ -1960,6 +1960,14 @@ body.intro-active {
   min-height: 100vh;
 }
 
+/* Ensure header is always visible on resume page */
+.resume-body .site-header {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+  border-bottom: 1px solid var(--border);
+}
+
 .resume-header {
   text-align: center;
   margin-bottom: 3rem;
