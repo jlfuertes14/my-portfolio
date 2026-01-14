@@ -886,10 +886,23 @@ body {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: none;
   padding: 2rem 0;
   color: var(--text-muted);
   background: #000000;
+  position: relative;
+}
+
+/* Full-width gradient line above footer */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
 }
 
 .footer-inner {
@@ -2275,6 +2288,7 @@ body.intro-active {
     padding: 1.2rem;
   }
 }
+
 /* =========================================
    CONTACT COMMAND CENTER
    ========================================= */
@@ -2322,10 +2336,23 @@ body.intro-active {
 }
 
 @keyframes scan {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 /* Holographic Header */
@@ -2359,8 +2386,13 @@ body.intro-active {
 }
 
 @keyframes scrollCode {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 /* Radar / Globe Placeholder */
@@ -2388,14 +2420,20 @@ body.intro-active {
 }
 
 @keyframes radarSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .system-status {
   text-align: right;
   font-family: var(--fw-heading);
-  color: var(--accent-2); /* Yellow for status */
+  color: var(--accent-2);
+  /* Yellow for status */
   font-size: 0.9rem;
   margin-top: auto;
 }
@@ -2405,7 +2443,13 @@ body.intro-active {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
 
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
