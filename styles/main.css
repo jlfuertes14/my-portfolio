@@ -814,7 +814,7 @@ body {
 .about p,
 .contact p {
   color: var(--text-muted);
-  max-width: 65ch;
+  max-width: 100%;
   font-size: 1rem;
 }
 
